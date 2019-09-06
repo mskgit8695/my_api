@@ -31,15 +31,15 @@ class UserController extends Controller
     public function register(Request $request){
     	//Validator
     	$validator = Validator::make($request->all(), [
-    		'name'=>'required|string',
-    		'email'=>'required|email:filter',
+    		'name'=>'required|regex:/^[a-zA-Z0-9\s]+$/|max:100',
+    		'email'=>'required|email:filter|unique:users,email',
     		'password'=>'required',
     		'c_password'=>'required|same:password',
     	]);
 
     	if($validator->fails()){
     		return response()->json(['error'=>$validator->errors()], 401);
-    	}
+    	} echo "Pass"; exit;
 
     	//Get All User's Input
     	$input = $request->all();
