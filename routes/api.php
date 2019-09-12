@@ -25,4 +25,5 @@ Route::post('logout', 'API\UserController@logoutApi');
 /** After Login API **/
 Route::group(['middleware' => 'auth:api'], function(){
 	Route::post('details', 'API\UserController@details');
+	Route::post('reset-password', 'API\UserController@resetPassword');
 });
